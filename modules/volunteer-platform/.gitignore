@@ -1,0 +1,17 @@
+node_modules/
+.next/
+dist/
+.env
+.env.*
+!.env.example
+.turbo/
+generated/
+coverage/
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+.npmrc
