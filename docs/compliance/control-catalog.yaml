@@ -1,0 +1,44 @@
+version: 1
+as_of: "2026-08-27"
+disclaimer: "Katalog kontrolny; nie stanowi porady prawnej."
+controls:
+  - id: NGO-VOL-001
+    area: volunteer
+    title: Porozumienie i zakres świadczeń wolontariusza
+    applicability: when_using_volunteers
+    evidence: [agreement, scope, start_date, end_date, safety_information]
+  - id: PRIV-GDPR-001
+    area: privacy
+    title: Rejestr czynności i podstaw prawnych
+    applicability: when_processing_personal_data
+    evidence: [processing_register, legal_basis, retention_rule, privacy_notice]
+  - id: PRIV-GDPR-002
+    area: privacy
+    title: Obsługa praw osób i naruszeń
+    applicability: when_processing_personal_data
+    evidence: [request_log, incident_register, notification_decision]
+  - id: AI-ACT-001
+    area: ai_governance
+    title: Inwentaryzacja i klasyfikacja ryzyka systemów AI
+    applicability: when_providing_or_using_ai
+    evidence: [ai_register, role_assessment, risk_classification, human_oversight]
+  - id: KSC-NIS2-001
+    area: cybersecurity
+    title: Ocena, czy organizacja jest podmiotem kluczowym lub ważnym
+    applicability: scope_assessment_required
+    evidence: [sector_assessment, size_assessment, legal_review, decision_date]
+  - id: AZ-GOV-001
+    area: azure_governance
+    title: Tożsamość, RBAC, PIM i najmniejsze uprawnienia
+    applicability: when_using_azure
+    evidence: [role_export, pim_policy, mfa_policy, access_review]
+  - id: AZ-COST-001
+    area: azure_cost
+    title: Budżety, tagi i alerty anomalii kosztowych
+    applicability: when_using_azure
+    evidence: [budget, tags, alert_rules, monthly_review]
+  - id: BC-001
+    area: continuity
+    title: Kopie zapasowe i test odtworzenia
+    applicability: when_storing_operational_data
+    evidence: [backup_policy, restore_test, recovery_objectives]
