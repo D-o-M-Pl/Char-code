@@ -2,23 +2,33 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Platforma Wolontariatu',
-  description: 'Łączymy wolontariuszy z organizacjami. Dopasowanie AI.',
+  title: 'Char-code | NGO, Azure i AI Governance',
+  description: 'Wolontariat, koszty Azure, bezpieczne AI i zgodność non-profit w jednej aplikacji.',
 };
+
+const links = [
+  ['/', 'Start'],
+  ['/tasks', 'Zadania'],
+  ['/volunteers', 'Wolontariusze'],
+  ['/organizations', 'Organizacje'],
+  ['/cloud-costs', 'Koszty Azure'],
+  ['/governance', 'Governance'],
+  ['/compliance', 'Prawo i normy'],
+];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pl">
-      <body className="bg-gray-50 min-h-screen">
-        <nav className="bg-white shadow-sm border-b">
-          <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-6">
-            <a href="/" className="font-bold text-green-700 text-lg">🌿 Wolontariat</a>
-            <a href="/tasks" className="text-gray-600 hover:text-green-700 transition-colors">Zadania</a>
-            <a href="/volunteers" className="text-gray-600 hover:text-green-700 transition-colors">Wolontariusze</a>
-            <a href="/organizations" className="text-gray-600 hover:text-green-700 transition-colors">Organizacje</a>
+      <body className="min-h-screen bg-slate-50">
+        <nav className="border-b bg-white shadow-sm">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-5 gap-y-2 px-4 py-3">
+            <a href="/" className="mr-2 text-lg font-bold text-slate-900">Char-code</a>
+            {links.slice(1).map(([href, label]) => (
+              <a key={href} href={href} className="text-sm text-slate-600 transition-colors hover:text-blue-700">{label}</a>
+            ))}
           </div>
         </nav>
-        <main className="max-w-6xl mx-auto px-4 py-8">{children}</main>
+        <main className="mx-auto max-w-7xl px-4 py-8">{children}</main>
       </body>
     </html>
   );

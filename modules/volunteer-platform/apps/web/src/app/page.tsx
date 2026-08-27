@@ -1,45 +1,32 @@
+const modules = [
+  ['Volunteer Platform', 'Zadania, organizacje, wolontariusze i bezpieczne dopasowanie kompetencji.', '/tasks', 'emerald'],
+  ['Koszty usług Azure', 'Zagregowane koszty per usługa z prywatnego backendu i alerty anomalii.', '/cloud-costs', 'blue'],
+  ['Azure Governance', 'Landing zone, polityki, tożsamość, monitoring, sekrety i kontrola kosztów.', '/governance', 'indigo'],
+  ['Prawo i normy NGO', 'RODO, wolontariat, rachunkowość, AI Act, KSC/NIS2 oraz normy ISO.', '/compliance', 'violet'],
+];
+
 export default function HomePage() {
   return (
-    <div className="text-center py-16">
-      <h1 className="text-4xl font-bold text-gray-900 mb-4">
-        Platforma Wolontariatu z AI
-      </h1>
-      <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-        Łączymy wolontariuszy z organizacjami. Claude AI dobiera najlepsze dopasowania
-        na podstawie umiejętności i lokalizacji.
-      </p>
-      <div className="flex gap-4 justify-center">
-        <a
-          href="/tasks"
-          className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
-        >
-          Przeglądaj zadania
-        </a>
-        <a
-          href="/volunteers"
-          className="border border-green-600 text-green-600 px-6 py-3 rounded-lg font-medium hover:bg-green-50 transition-colors"
-        >
-          Zostań wolontariuszem
-        </a>
-      </div>
-
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-        <div className="bg-white p-6 rounded-xl shadow-sm border">
-          <div className="text-3xl mb-3">🤖</div>
-          <h3 className="font-semibold text-lg mb-2">Dopasowanie AI</h3>
-          <p className="text-gray-600">Claude AI analizuje umiejętności wolontariuszy i dobiera ich do odpowiednich zadań.</p>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border">
-          <div className="text-3xl mb-3">🏢</div>
-          <h3 className="font-semibold text-lg mb-2">Dla organizacji</h3>
-          <p className="text-gray-600">NGO i fundacje publikują zadania i zarządzają wolontariuszami w jednym miejscu.</p>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow-sm border">
-          <div className="text-3xl mb-3">📋</div>
-          <h3 className="font-semibold text-lg mb-2">Transparentność</h3>
-          <p className="text-gray-600">Pełna historia zgłoszeń, statusów i działań wolontariackich.</p>
-        </div>
-      </div>
+    <div>
+      <section className="rounded-2xl bg-slate-950 px-6 py-14 text-white sm:px-10">
+        <p className="text-sm font-semibold uppercase tracking-widest text-cyan-300">Code AI Hybrid dla non-profit</p>
+        <h1 className="mt-3 max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl">
+          Wolontariat, Azure, bezpieczne AI i zgodność w jednej aplikacji
+        </h1>
+        <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
+          Char-code łączy procesy społeczne z kontrolą kosztów usług chmurowych,
+          architekturą governance i katalogiem obowiązków organizacji non-profit.
+        </p>
+      </section>
+      <section className="mt-8 grid gap-5 md:grid-cols-2">
+        {modules.map(([title, description, href]) => (
+          <a key={title} href={href} className="rounded-xl border bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow">
+            <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+            <p className="mt-2 text-gray-600">{description}</p>
+            <span className="mt-5 inline-block font-semibold text-blue-700">Otwórz moduł →</span>
+          </a>
+        ))}
+      </section>
     </div>
   );
 }
