@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: volunteer_platform
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - volunteer_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d volunteer_platform"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  volunteer-api:
+    build:
+      context: ./modules/volunteer-platform
+      dockerfile: apps/api/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/volunteer_platform
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      CORS_ORIGINS: http://localhost:3000
+      HOST: 0.0.0.0
+      PORT: 3001
+      RATE_LIMIT_MAX: 100
+    ports:
+      - "127.0.0.1:3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+  char-code:
+    build:
+      context: ./modules/volunteer-platform
+      dockerfile: apps/web/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:3001
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+      CLOUD_BILLING_API_URL: ${CLOUD_BILLING_API_URL:-}
+      CLOUD_BILLING_API_KEY: ${CLOUD_BILLING_API_KEY:-}
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - volunteer-api
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  volunteer_db:
